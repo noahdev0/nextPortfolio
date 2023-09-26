@@ -1,13 +1,21 @@
 
 import Head from "next/head";
+import Link from "next/link";
 import {
   AiFillTwitterCircle,
   AiFillLinkedin,
   AiFillYoutube,
+  AiFillFacebook,
+  AiFillInstagram,
+  AiFillGithub,
+  AiOutlineGithub,
+  AiOutlineFacebook,
+  AiOutlineRadiusSetting,
+  AiOutlineInstagram,
 } from "react-icons/ai";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useState , useEffect } from "react";
 import deved from "../public/dev-ed-wave.png";
 import code from "../public/code.png";
 import design from "../public/design.png";
@@ -19,6 +27,8 @@ import web3 from "../public/web3.png";
 import web4 from "../public/web4.png";
 import web5 from "../public/web5.png";
 import web6 from "../public/web6.png";
+import { useInView } from "react-intersection-observer";
+
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
@@ -41,7 +51,10 @@ export default function Home() {
   };
 
   // Quick and dirt for the example
-  
+  const ite = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -53,6 +66,20 @@ export default function Home() {
       }
     }
   };
+  const controls = useAnimation();
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    let timeoutId;
+    if (inView) {
+      timeoutId = setTimeout(() => {
+        controls.start("visible");
+      }, 500); // Delay animation start by 500ms
+    } else {
+      controls.start("hidden");
+    }
+    return () => clearTimeout(timeoutId);
+  }, [controls, inView]);
   
   const item = {
     hidden: { y: 20, opacity: 0 },
@@ -73,13 +100,9 @@ export default function Home() {
         <section className="min-h-screen">
           <nav className="py-10 mb-12 flex justify-between dark:text-white">
           <div className="text-center text-3xl font-bold py-8">
-    <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500">بِسْمِ  </span>
-    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500"> اللهِ</span>
-    <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to--blue-500"> الرَّحْمٰنِ</span>
-    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500"> الرَّحِيْمِ</span>
 </div>
 
-            <ul className="flex items-center">
+            <ul className="flex items-center sm:justify-end w-full ">
               <li>
                 <BsFillMoonStarsFill
                   onClick={() => setDarkMode(!darkMode)}
@@ -116,41 +139,52 @@ export default function Home() {
            initial="hidden"
            animate="visible"
             className="text-5xl flex justify-center gap-16 py-3 text-gray-600 dark:text-green-300">
-             <motion.div variants={item} >
-              <AiFillTwitterCircle href="#" onClick={
-                ()=>{
-                  window.open(`https://www.twitter.com`)
-                }
-              }/>
-              </motion.div>
+            
+              
               <motion.div variants={item} >
-              <AiFillLinkedin onClick={
-                ()=>{
-                  window.open(`https://www.linkedin.com`)
-                }} />
+              <Link href="https://github.com/noahdev0">
+                <a target="_"><AiFillGithub /></a>
+              </Link>
+               
+                </motion.div>
+              <motion.div variants={item} >
+              <Link href="https://www.facebook.com/nouh.benzina.39">
+                <a target="_"><AiFillFacebook/></a>
+              </Link>
+               
+                </motion.div>
+              <motion.div variants={item} >
+              <Link href="https://www.instagram.com/noahbenzina/">
+                <a target="_"><AiOutlineInstagram /></a>
+              </Link>
+               
                 </motion.div>
 
 
-                <motion.div variants={item}>
-              <AiFillYoutube onClick={
-                ()=>{
-                  window.open(`https://www.youtube.com`)
-                }} />
-                </motion.div>
+              
 
             </motion.div>
-            <div className="mx-auto bg-gradient-to-b from-teal-500 rounded-full w-80 h-80 relative overflow-hidden mt-20 md:h-96 md:w-96">
-              <Image src={deved} layout="fill" objectFit="cover" 
+            <div className="mx-auto cont bg-gradient-to-b from-teal-500 rounded-full w-80 h-80 relative overflow-hidden mt-20 md:h-96 md:w-96">
+              <Image src={deved} layout="fill" objectFit="cover" style={{ maxWidth: "100%" }} 
                 alt=""
+                className="rounded-full "
+                />
               
-              />
             </div>
           </div>
         </section>
-        <section>
+        <motion.section >
           <div>
-            <h3 className="text-6xl py-1 dark:text-white text-center ">Services I offer</h3>
-            <p className="text-md text-2xl py-2 leading-8 text-gray-800 dark:text-gray-200">
+          <motion.h3
+          className="text-6xl py-1 dark:text-white text-center my-5"
+          variants={item}
+          initial="hidden"
+          animate={controls}
+          ref={ref}
+        >
+          Services I offer
+        </motion.h3>
+            <p className="text-md  text-2xl text-center py-2 leading-8 text-gray-800 dark:text-gray-200">
             As a web development freelancer, I offer a range of services including website design and development,
              e-commerce website development, content management system development,
               web application development, website maintenance and support, search engine optimization, responsive website design,
@@ -167,24 +201,32 @@ export default function Home() {
             </p>
           </div>
           <div className="lg:flex gap-10">
-            <div className="text-center shadow-lg p-10 rounded-xl my-10  dark:bg-white flex-1">
+            <motion.div 
+             className="text-center shadow-lg p-10 rounded-xl my-10  dark:bg-white flex-1"
+             >
+              <motion.div variants={item}
+          initial="hidden"
+          animate={controls}
+          ref={ref}>
               <Image src={design} width={100} height={100} 
                 alt=""
+                
               
               />
-              <h3 className="text-lg font-medium pt-8 pb-2  ">
-                Beautiful Designs
-              </h3>
-              <p className="py-2">
-                Creating elegant designs suited for your needs following core
-                design theory.
-              </p>
-              <h4 className="py-4 text-teal-600">Design Tools I Use</h4>
-              <p className="text-gray-800 py-1">Photoshop</p>
-              <p className="text-gray-800 py-1">Illustrator</p>
-              <p className="text-gray-800 py-1">Figma</p>
-              <p className="text-gray-800 py-1">Indesign</p>
-            </div>
+              </motion.div>
+              <h3 className="text-lg font-medium pt-8 pb-2">
+  Technologies I Use
+</h3>
+<p className="py-2">
+  As a developer, I utilize the latest technologies to create efficient and scalable applications that meet your needs.
+</p>
+<h4 className="py-4 text-teal-600">Technologies I Work With</h4>
+<p className="text-gray-800 py-1">JavaScript</p>
+<p className="text-gray-800 py-1">React</p>
+<p className="text-gray-800 py-1">Node.js</p>
+<p className="text-gray-800 py-1">Express</p>
+<p className="text-gray-800 py-1">MongoDB</p>
+            </motion.div>
             <div className="text-center shadow-lg p-10 rounded-xl my-10 dark:bg-white flex-1">
               <Image src={code} width={100} height={100} 
                 alt=""
@@ -215,7 +257,7 @@ export default function Home() {
               
             </div>
           </div>
-        </section>
+        </motion.section>
         <section className="py-10">
           <div>
             <h3 className="text-5xl py-1 dark:text-white text-center">Portofolio</h3>

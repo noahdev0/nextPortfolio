@@ -13,7 +13,6 @@ import {
   AiOutlineRadiusSetting,
   AiOutlineInstagram,
   AiFillCode,
-  AiFillCloud,
 } from "react-icons/ai";
 import { motion, useAnimation } from "framer-motion";
 import { useState , useEffect } from "react";
@@ -135,7 +134,7 @@ export default function Home() {
             </h3>
             <p className="text-md py-5 leading-8 text-gray-800 dark:text-gray-200 max-w-xl mx-auto md:text-xl">
               Freelancer providing services for programming and design content
-              needs. Join me down below and let`&apos;`s be awesome !
+              needs. Join me down below and let&apos;s be awesome !
             </p>
             <motion.div
            variants={container}
@@ -192,7 +191,7 @@ export default function Home() {
              e-commerce website development, content management system development,
               web application development, website maintenance and support, search engine optimization, responsive website design,
                website hosting and<span className="text-teal-500"> server administration </span> , web analytics and reporting, and social media integration.
-                I specialize in providing customized solutions for each client`&apos;`s unique needs,
+                I specialize in providing customized solutions for each client&apos;s unique needs,
              utilizing my skills and experience to deliver <span className="text-teal-500">high-quality </span> results.
               
                
@@ -235,12 +234,12 @@ export default function Home() {
                 Code your dream project
               </h3>
               <p className="py-2">
-                Do you have an idea for your next great website? Let`&apos;`s make it a
+                Do you have an idea for your next great website? Let&apos;s make it a
                 reality.
               </p>
               <h4 className="py-4 text-teal-600">Languages I Use</h4>
               <p className="text-gray-800 py-1">JavaScript</p>
-              <p className="text-gray-800 py-1">Python<AiFillCloud/></p>
+              <p className="text-gray-800 py-1">Python</p>
               <p className="text-gray-800 py-1">Sass</p>
               <p className="text-gray-800 py-1">CSS</p>
             </div>
@@ -263,7 +262,7 @@ export default function Home() {
             <h3 className="text-5xl py-1 dark:text-white text-center">Portofolio</h3>
             <p className="text-md text-2xl py-2 leading-8 text-gray-800 text-center dark:text-gray-200">
               Since the beginning of my journey as a freelance designer and
-              developer, I`&apos;`ve done remote work for
+              developer, I&apos;ve done remote work for
               <span className="text-teal-500"> agencies </span>
               consulted for <span className="text-teal-500">startups </span>
               and collaborated with talanted people to create digital products

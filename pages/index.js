@@ -12,10 +12,14 @@ import {
   AiOutlineFacebook,
   AiOutlineRadiusSetting,
   AiOutlineInstagram,
+  AiFillCode,
+  AiFillCloud,
 } from "react-icons/ai";
-import { BsFillMoonStarsFill } from "react-icons/bs";
 import { motion, useAnimation } from "framer-motion";
 import { useState , useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { BsFillMoonStarsFill } from "react-icons/bs";
+// **********************************************************************************************************************
 import deved from "../public/dev-ed-wave.png";
 import code from "../public/code.png";
 import design from "../public/design.png";
@@ -27,7 +31,6 @@ import web3 from "../public/web3.png";
 import web4 from "../public/web4.png";
 import web5 from "../public/web5.png";
 import web6 from "../public/web6.png";
-import { useInView } from "react-intersection-observer";
 
 
 export default function Home() {
@@ -102,7 +105,7 @@ export default function Home() {
           <div className="text-center text-3xl font-bold py-8">
 </div>
 
-            <ul className="flex items-center sm:justify-end w-full ">
+            <ul className="flex items-center justify-between w-full ">
               <li>
                 <BsFillMoonStarsFill
                   onClick={() => setDarkMode(!darkMode)}
@@ -204,16 +207,13 @@ export default function Home() {
             <motion.div 
              className="text-center shadow-lg p-10 rounded-xl my-10  dark:bg-white flex-1"
              >
-              <motion.div variants={item}
-          initial="hidden"
-          animate={controls}
-          ref={ref}>
+            
               <Image src={design} width={100} height={100} 
                 alt=""
                 
               
               />
-              </motion.div>
+              
               <h3 className="text-lg font-medium pt-8 pb-2">
   Technologies I Use
 </h3>
@@ -240,7 +240,7 @@ export default function Home() {
               </p>
               <h4 className="py-4 text-teal-600">Languages I Use</h4>
               <p className="text-gray-800 py-1">JavaScript</p>
-              <p className="text-gray-800 py-1">Pytho</p>
+              <p className="text-gray-800 py-1">Python<AiFillCloud/></p>
               <p className="text-gray-800 py-1">Sass</p>
               <p className="text-gray-800 py-1">CSS</p>
             </div>

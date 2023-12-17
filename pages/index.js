@@ -34,14 +34,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const [replay, setReplay] = useState(true);
   // Placeholder text data, as if from API
-  const placeholderText = [
-    { type: "heading1", text: "Framer Motion" },
-    {
-      type: "heading2",
-      text: "Animating responsive text!",
-    },
-  ];
-
+  
   const headerContainer = {
     visible: {
       transition: {
@@ -50,11 +43,7 @@ export default function Home() {
     },
   };
 
-  // Quick and dirt for the example
-  const ite = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {

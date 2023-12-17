@@ -154,7 +154,7 @@ export default function Home() {
                 objectFit="cover"
                 style={{ maxWidth: "100%" }}
                 alt=""
-                className="rounded-full "
+                className="rounded-full mx-auto"
               />
             </div>
           </div>
